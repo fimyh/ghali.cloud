@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ghali Cloud builds custom AI agents, OCR, RAG systems and intelligent automation.">
+  <meta name="theme-color" content="#FAFAFA">
+  <link rel="icon" type="image/png" href="assets/img/ghali.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/ghali.png">
+  <link rel="apple-touch-icon" href="assets/img/ghali.png">
+
+  <title>Ghali Cloud | Practical AI for Business</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Geist:wght@400;450;500;600&amp;family=Geist+Mono:wght@400;500&amp;family=Noto+Sans+Arabic:wght@400;500;600&amp;display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/app.css">
+  <link rel="stylesheet" href="assets/css/discuss-button.css">
+  <link rel="stylesheet" href="assets/css/footer.css">
+  
+  
+  <script>
+    (function () {
+      const params = new URLSearchParams(location.search);
+      const requested = params.get("lang");
+      const saved = localStorage.getItem("ghali-cloud-language");
+      const language = ["en", "fr", "ar"].includes(requested) ? requested : (["en", "fr", "ar"].includes(saved) ? saved : "en");
+      document.documentElement.lang = language;
+      document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
+      document.documentElement.dataset.language = language;
+    }());
+  </script>
+  <script src="assets/js/htmx.min.js" defer></script>
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
+  <script src="assets/js/app.js" defer></script>
+  <script src="assets/js/floating-language.js" defer></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content" data-skip-link>Skip to main content</a>
+  <div class="route-progress htmx-indicator" id="route-progress" aria-hidden="true"></div>
+  <div data-component-shell="header"></div>
+  <main id="main-content">
+    <div data-component-shell="hero"></div>
+    <div data-component-shell="solutions"></div>
+    <div data-component-shell="approach"></div>
+    <div data-component-shell="security"></div>
+    <div data-component-shell="contact"></div>
+  </main>
+  <div data-component-shell="footer"></div>
+  <noscript>
+    <p class="noscript-message">JavaScript is required to load this website.</p>
+  </noscript>
+</body>
+
+</html>

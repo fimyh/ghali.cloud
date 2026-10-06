@@ -1,0 +1,1614 @@
+/* ==========================================================================
+   Ghali Cloud - Main stylesheet
+   Vercel-inspired multilingual interface
+   EN / FR / AR support
+   ========================================================================== */
+
+/* ==========================================================================
+   1. Design tokens
+   ========================================================================== */
+
+@property --discuss-border-angle {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0deg;
+}
+
+:root {
+    /* Core colors */
+    --color-background: #fafafa;
+    --color-surface: #ffffff;
+    --color-text: #171717;
+    --color-muted: #4d4d4d;
+    --color-disabled: #8f8f8f;
+    --color-border: #ebebeb;
+    --color-border-dark: #262626;
+
+    /* Accent colors */
+    --color-blue: #0070f3;
+    --color-purple: #7928ca;
+    --color-pink: #eb367f;
+    --color-teal: #50e3c2;
+    --color-danger: #ee0000;
+
+    /* Project CTA */
+    --color-project-yellow: #facc15;
+    --color-project-yellow-hover: #eab308;
+    --color-project-yellow-active: #ca8a04;
+    --color-project-text: #171717;
+
+    /* Typography */
+    --font-sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-mono: "Geist Mono", Monaco, "Courier New", monospace;
+    --font-arabic: "Noto Sans Arabic", sans-serif;
+
+    /* Layout */
+    --container-width: 1360px;
+    --header-height: 64px;
+
+    /* Shape */
+    --radius-button: 4px;
+    --radius-card: 6px;
+    --radius-pill: 999px;
+
+    /* Shadows */
+    --shadow-card:
+        0 1px 2px rgb(0 0 0 / 4%),
+        0 4px 18px rgb(0 0 0 / 8%);
+
+    --shadow-header:
+        0 1px 2px rgb(0 0 0 / 3%),
+        0 8px 24px rgb(0 0 0 / 5%);
+
+    --shadow-floating:
+        0 4px 10px rgb(0 0 0 / 8%),
+        0 14px 40px rgb(0 0 0 / 12%);
+
+    /* Motion */
+    --transition-fast: 160ms ease;
+    --transition-normal: 200ms ease;
+}
+
+/* ==========================================================================
+   2. Reset and base
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-height) + 16px);
+}
+
+body {
+    margin: 0;
+    overflow-x: hidden;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+a {
+    color: inherit;
+}
+
+button,
+select,
+input,
+textarea {
+    font: inherit;
+}
+
+button,
+a,
+select {
+    -webkit-tap-highlight-color: transparent;
+}
+
+img,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+:focus-visible {
+    outline: none;
+    box-shadow:
+        0 0 0 2px var(--color-surface),
+        0 0 0 4px var(--color-blue);
+}
+
+/* ==========================================================================
+   3. Typography
+   ========================================================================== */
+
+h1,
+h2,
+h3,
+p {
+    margin-top: 0;
+}
+
+h1 {
+    max-width: 800px;
+    margin-bottom: 24px;
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    font-weight: 450;
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+}
+
+h2 {
+    max-width: 800px;
+    margin-bottom: 24px;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 450;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+}
+
+h3 {
+    margin-bottom: 12px;
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+}
+
+p {
+    color: var(--color-muted);
+}
+
+.eyebrow {
+    display: block;
+    margin-bottom: 16px;
+    color: var(--color-muted);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.section-header {
+    max-width: 800px;
+    margin-bottom: 64px;
+}
+
+.section-header > p,
+.hero-copy > p {
+    font-size: 20px;
+}
+
+/* ==========================================================================
+   4. Global layout
+   ========================================================================== */
+
+.container {
+    width: min(calc(100% - 80px), var(--container-width));
+    margin-inline: auto;
+}
+
+.section {
+    padding-block: 120px;
+}
+
+.section-white {
+    background-color: var(--color-surface);
+}
+
+.section-dark {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.section-dark p,
+.section-dark .eyebrow {
+    color: var(--color-disabled);
+}
+
+/* ==========================================================================
+   5. Accessibility
+   ========================================================================== */
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+}
+
+.skip-link {
+    position: fixed;
+    inset-block-start: -100px;
+    inset-inline-start: 16px;
+    z-index: 2000;
+    padding: 12px 16px;
+    background-color: var(--color-text);
+    color: var(--color-surface);
+    text-decoration: none;
+}
+
+.skip-link:focus {
+    inset-block-start: 16px;
+}
+
+/* ==========================================================================
+   6. Generic buttons
+   ========================================================================== */
+
+.button {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-button);
+    background-color: transparent;
+    color: var(--color-text);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+        background-color var(--transition-fast),
+        border-color var(--transition-fast),
+        color var(--transition-fast),
+        opacity var(--transition-fast),
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+.button:hover {
+    transform: translateY(-1px);
+}
+
+.button:active {
+    transform: translateY(1px);
+}
+
+.button svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.button-primary {
+    border-color: var(--color-text);
+    background-color: var(--color-text);
+    color: var(--color-surface);
+}
+
+.button-primary:hover {
+    opacity: 0.82;
+}
+
+.button-secondary {
+    border-color: var(--color-border);
+    background-color: var(--color-surface);
+    color: var(--color-text);
+}
+
+.button-secondary:hover {
+    border-color: var(--color-muted);
+    background-color: var(--color-background);
+}
+
+.button-large {
+    min-height: 48px;
+}
+
+/* Project CTA */
+
+.nav-cta,
+.mobile-project-cta,
+.button-project {
+    border-color: var(--color-project-yellow);
+    background-color: var(--color-project-yellow);
+    color: var(--color-project-text);
+    opacity: 1;
+}
+
+.nav-cta:hover,
+.mobile-project-cta:hover,
+.button-project:hover {
+    border-color: var(--color-project-yellow-hover);
+    background-color: var(--color-project-yellow-hover);
+    color: var(--color-project-text);
+    opacity: 1;
+}
+
+.nav-cta:active,
+.mobile-project-cta:active,
+.button-project:active {
+    border-color: var(--color-project-yellow-active);
+    background-color: var(--color-project-yellow-active);
+    color: var(--color-project-text);
+}
+
+/* ==========================================================================
+   7. Sticky Header
+   ========================================================================== */
+
+[data-component-shell="header"] {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: 1000;
+    width: 100%;
+}
+
+.site-header {
+    position: relative;
+    width: 100%;
+    border-bottom: 1px solid transparent;
+    background-color: rgb(250 250 250 / 100%);
+    transition:
+        background-color var(--transition-normal),
+        border-color var(--transition-normal),
+        box-shadow var(--transition-normal),
+        backdrop-filter var(--transition-normal);
+}
+
+.site-header.is-scrolled {
+    border-bottom-color: rgb(235 235 235 / 80%);
+    background-color: rgb(250 250 250 / 72%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    backdrop-filter: blur(16px) saturate(180%);
+    box-shadow: var(--shadow-header);
+}
+
+.nav-shell {
+    display: flex;
+    width: min(calc(100% - 80px), var(--container-width));
+    height: var(--header-height);
+    margin-inline: auto;
+    align-items: center;
+    gap: 28px;
+}
+
+.brand {
+    display: inline-flex;
+    min-height: 44px;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.brand img,
+.brand svg {
+    width: auto;
+    height: 28px;
+    object-fit: contain;
+}
+
+.desktop-nav {
+    display: flex;
+    margin-block: 0;
+    margin-inline-start: 24px;
+    margin-inline-end: auto;
+    padding: 0;
+    align-items: center;
+    gap: 28px;
+    list-style: none;
+}
+
+.desktop-nav a {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    color: var(--color-muted);
+    font-size: 14px;
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.desktop-nav a:hover {
+    color: var(--color-blue);
+}
+
+.nav-actions {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 8px;
+}
+
+.menu-button {
+    display: none;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+    color: var(--color-text);
+    cursor: pointer;
+}
+
+.menu-button svg {
+    width: 24px;
+    height: 24px;
+    margin: auto;
+}
+
+/* ==========================================================================
+   8. Mobile navigation
+   ========================================================================== */
+
+.mobile-nav {
+    padding: 8px 16px 20px;
+    border-top: 1px solid var(--color-border);
+    background-color: var(--color-surface);
+}
+
+.mobile-nav a:not(.button):not(.discuss-button) {
+    display: flex;
+    min-height: 48px;
+    align-items: center;
+    border-bottom: 1px solid var(--color-border);
+    text-decoration: none;
+}
+
+.mobile-nav .button {
+    width: 100%;
+    margin-top: 12px;
+}
+
+/* ==========================================================================
+   9. Discuss button
+   Default: circular animated yellow border
+   Hover/focus: animation stops and full static border appears
+   ========================================================================== */
+
+.discuss-button {
+    position: relative;
+    display: inline-flex;
+    min-width: 132px;
+    min-height: 44px;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding-inline: 18px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    border-radius: var(--radius-button);
+    background-color: transparent;
+    color: var(--color-project-text);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    isolation: isolate;
+    contain: paint;
+    transition:
+        color 180ms ease,
+        box-shadow 180ms ease,
+        transform 180ms ease;
+}
+
+.discuss-button::before {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    content: "";
+    padding: 2px;
+    border-radius: inherit;
+    background:
+        conic-gradient(
+            from var(--discuss-border-angle),
+            transparent 0deg,
+            transparent 245deg,
+            rgb(250 204 21 / 20%) 265deg,
+            var(--color-project-yellow) 295deg,
+            var(--color-project-yellow-active) 325deg,
+            transparent 360deg
+        );
+    -webkit-mask:
+        linear-gradient(#ffffff 0 0) content-box,
+        linear-gradient(#ffffff 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+        linear-gradient(#ffffff 0 0) content-box,
+        linear-gradient(#ffffff 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+    animation: discuss-border-rotation 2.4s linear infinite;
+    will-change: --discuss-border-angle;
+}
+
+.discuss-button::after {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    content: "";
+    border: 1px solid rgb(250 204 21 / 35%);
+    border-radius: inherit;
+    background-color: transparent;
+    pointer-events: none;
+    transition:
+        border-color 180ms ease,
+        border-width 180ms ease;
+}
+
+@keyframes discuss-border-rotation {
+    from {
+        --discuss-border-angle: 0deg;
+    }
+
+    to {
+        --discuss-border-angle: 360deg;
+    }
+}
+
+.discuss-button > span,
+.discuss-button > i,
+.discuss-button > svg {
+    position: relative;
+    z-index: 2;
+}
+
+.discuss-button > span {
+    display: inline-block;
+    color: inherit;
+    opacity: 1;
+    visibility: visible;
+}
+
+.discuss-button > i,
+.discuss-button > svg {
+    display: block;
+    width: 16px;
+    height: 16px;
+    flex: 0 0 16px;
+    color: currentColor;
+    stroke: currentColor;
+    opacity: 1;
+    visibility: visible;
+}
+
+.discuss-button:hover,
+.discuss-button:focus-visible {
+    background-color: transparent;
+    color: var(--color-project-text);
+    box-shadow:
+        0 2px 4px rgb(0 0 0 / 5%),
+        0 6px 16px rgb(250 204 21 / 14%);
+    transform: translateY(-1px);
+}
+
+.discuss-button:hover::before,
+.discuss-button:focus-visible::before {
+    padding: 3px;
+    background: var(--color-project-yellow);
+    animation: none;
+    will-change: auto;
+}
+
+.discuss-button:hover::after,
+.discuss-button:focus-visible::after {
+    border-width: 3px;
+    border-color: var(--color-project-yellow);
+    background-color: transparent;
+}
+
+.discuss-button:active {
+    color: var(--color-project-text);
+    box-shadow: 0 1px 2px rgb(0 0 0 / 8%);
+    transform: translateY(1px);
+}
+
+.discuss-button:active::before {
+    padding: 3px;
+    background: var(--color-project-yellow-active);
+    animation: none;
+}
+
+.discuss-button:active::after {
+    border-width: 3px;
+    border-color: var(--color-project-yellow-active);
+}
+
+.discuss-button:focus-visible {
+    outline: none;
+    box-shadow:
+        0 0 0 2px var(--color-surface),
+        0 0 0 4px var(--color-project-yellow),
+        0 6px 16px rgb(250 204 21 / 14%);
+}
+
+.nav-actions .discuss-button {
+    flex-shrink: 0;
+}
+
+.discuss-button-ar {
+    min-width: 154px;
+}
+
+.mobile-discuss-button {
+    width: 100%;
+    min-width: 100%;
+    min-height: 48px;
+    margin-top: 16px;
+}
+
+.mobile-project-cta {
+    min-height: 48px;
+}
+
+/* ==========================================================================
+   10. Hero
+   ========================================================================== */
+
+.hero {
+    padding-top: 96px;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: center;
+    gap: 72px;
+}
+
+.badge {
+    display: inline-flex;
+    margin-bottom: 24px;
+    padding: 4px 8px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    background-color: var(--color-surface);
+    font-size: 12px;
+}
+
+.hero-actions,
+.trust-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.trust-list {
+    margin: 28px 0 0;
+    padding: 0;
+    color: var(--color-muted);
+    list-style: none;
+}
+
+.trust-list li {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.trust-list svg {
+    width: 15px;
+    color: var(--color-teal);
+}
+
+/* ==========================================================================
+   11. Workflow illustration
+   ========================================================================== */
+
+.terminal-card {
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    background-color: var(--color-surface);
+    box-shadow: var(--shadow-card);
+}
+
+.terminal-bar {
+    display: flex;
+    height: 48px;
+    align-items: center;
+    gap: 6px;
+    padding-inline: 16px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.terminal-bar span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--color-border);
+}
+
+.terminal-bar code {
+    margin-inline-start: 8px;
+    color: var(--color-muted);
+    font-family: var(--font-mono);
+    font-size: 13px;
+}
+
+.workflow-canvas {
+    min-height: 440px;
+    padding: 42px 32px;
+    background-image:
+        linear-gradient(var(--color-border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--color-border) 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+
+.workflow-node {
+    display: flex;
+    max-width: 320px;
+    min-height: 72px;
+    margin-inline: auto;
+    align-items: center;
+    gap: 14px;
+    padding: 16px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    background-color: var(--color-surface);
+    box-shadow: var(--shadow-card);
+}
+
+.workflow-node svg {
+    width: 24px;
+    color: var(--color-blue);
+}
+
+.workflow-node small {
+    display: block;
+    color: var(--color-disabled);
+    font-family: var(--font-mono);
+    font-size: 12px;
+}
+
+.workflow-line {
+    position: relative;
+    width: 1px;
+    height: 44px;
+    margin-inline: auto;
+    background-color: var(--color-border);
+}
+
+.workflow-line span {
+    position: absolute;
+    inset-inline-start: -3px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: var(--color-blue);
+    animation: workflow-flow 1.8s linear infinite;
+}
+
+@keyframes workflow-flow {
+    from {
+        inset-block-start: 0;
+    }
+
+    to {
+        inset-block-start: 100%;
+    }
+}
+
+.status-pill {
+    display: flex;
+    width: max-content;
+    margin: 24px auto 0;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    background-color: var(--color-surface);
+    font-size: 12px;
+}
+
+.status-pill span {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: var(--color-teal);
+}
+
+/* ==========================================================================
+   12. Metrics
+   ========================================================================== */
+
+.metric-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: 80px;
+    border-block: 1px solid var(--color-border);
+}
+
+.metric-strip > div {
+    border-inline-end: 1px solid var(--color-border);
+}
+
+.metric-strip > div:last-child {
+    border-inline-end: 0;
+}
+
+.metric {
+    position: relative;
+    min-width: 0;
+    padding: 2rem;
+    overflow: hidden;
+}
+
+.metric-value,
+.metric-strip strong {
+    display: block;
+    min-height: 3rem;
+    color: var(--color-text);
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 450;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    font-variant-numeric: tabular-nums;
+}
+
+.metric > span,
+.metric-strip > div > span {
+    display: block;
+    margin-top: 0.75rem;
+    color: var(--color-muted);
+    font-size: 0.875rem;
+}
+
+.metric::after {
+    position: absolute;
+    inset-inline: 2rem;
+    inset-block-end: 0;
+    height: 1px;
+    content: "";
+    background-color: var(--color-text);
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition:
+        opacity 500ms ease,
+        transform 700ms ease;
+}
+
+.metric:has(.metric-value[data-counter-animated="true"])::after {
+    opacity: 0.12;
+    transform: scaleX(1);
+}
+
+/* ==========================================================================
+   13. Feature cards
+   ========================================================================== */
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.feature-card {
+    min-height: 270px;
+    padding: 32px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    background-color: var(--color-surface);
+    transition:
+        transform var(--transition-normal),
+        box-shadow var(--transition-normal);
+}
+
+.feature-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card);
+}
+
+.feature-icon {
+    display: grid;
+    width: 44px;
+    height: 44px;
+    margin-bottom: 24px;
+    place-items: center;
+    border-radius: var(--radius-button);
+    background-color: var(--color-background);
+    color: var(--color-blue);
+}
+
+.feature-icon svg {
+    width: 22px;
+}
+
+.feature-kicker {
+    color: var(--color-muted);
+    font-size: 14px;
+}
+
+/* ==========================================================================
+   14. Approach and Security
+   ========================================================================== */
+
+.approach-grid,
+.security-grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 96px;
+    align-items: start;
+}
+
+.sticky-copy {
+    position: sticky;
+    top: calc(var(--header-height) + 48px);
+}
+
+.steps {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.steps li {
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    gap: 24px;
+    padding-block: 30px;
+    border-top: 1px solid var(--color-border);
+}
+
+.steps li:last-child {
+    border-bottom: 1px solid var(--color-border);
+}
+
+.step-number {
+    color: var(--color-disabled);
+    font-family: var(--font-mono);
+    font-size: 13px;
+}
+
+.security-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.security-list article {
+    padding: 32px;
+    border: 1px solid var(--color-border-dark);
+}
+
+.security-list svg {
+    width: 24px;
+    margin-bottom: 32px;
+}
+
+/* ==========================================================================
+   15. Contact
+   ========================================================================== */
+
+.contact-card {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 48px;
+    padding: 56px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    background-color: var(--color-surface);
+    box-shadow: var(--shadow-card);
+}
+
+.contact-actions {
+    display: flex;
+    min-width: 220px;
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+}
+
+.text-link {
+    color: var(--color-blue);
+    text-decoration: none;
+}
+
+.text-link:hover {
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   16. Footer
+   ========================================================================== */
+
+.site-footer {
+    padding: 64px 0 28px;
+    border-top: 1px solid var(--color-border);
+    background-color: var(--color-surface);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr repeat(3, 1fr);
+    gap: 40px;
+}
+
+.site-footer ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.site-footer h2 {
+    margin-bottom: 16px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.site-footer nav a {
+    color: var(--color-muted);
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.site-footer nav a:hover {
+    color: var(--color-blue);
+}
+
+.footer-bottom {
+    display: flex;
+    margin-top: 56px;
+    padding-top: 24px;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--color-border);
+    font-size: 14px;
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+
+/* ==========================================================================
+   17. Floating language selector
+   ========================================================================== */
+
+.floating-language {
+    position: fixed;
+    inset-inline-end: 24px;
+    inset-block-end: 24px;
+    z-index: 1200;
+}
+
+.floating-language-button {
+    display: inline-grid;
+    width: 52px;
+    height: 52px;
+    padding: 0;
+    place-items: center;
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    background-color: rgb(255 255 255 / 90%);
+    color: var(--color-text);
+    box-shadow:
+        0 2px 4px rgb(0 0 0 / 6%),
+        0 8px 24px rgb(0 0 0 / 10%);
+    cursor: pointer;
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    backdrop-filter: blur(14px) saturate(160%);
+    transition:
+        background-color 180ms ease,
+        border-color 180ms ease,
+        box-shadow 180ms ease,
+        color 180ms ease,
+        transform 180ms ease;
+}
+
+.floating-language-button svg {
+    width: 22px;
+    height: 22px;
+    stroke-width: 1.8;
+}
+
+.floating-language-button:hover,
+.floating-language-button[aria-expanded="true"] {
+    border-color: var(--color-project-yellow);
+    background-color: var(--color-project-yellow);
+    color: var(--color-project-text);
+    box-shadow:
+        0 2px 4px rgb(0 0 0 / 8%),
+        0 10px 28px rgb(250 204 21 / 22%);
+    transform: translateY(-2px);
+}
+
+.floating-language-button:active {
+    transform: translateY(1px);
+}
+
+.floating-language-button:focus-visible {
+    box-shadow:
+        0 0 0 2px var(--color-surface),
+        0 0 0 4px var(--color-blue),
+        0 10px 28px rgb(0 0 0 / 12%);
+}
+
+.floating-language-options {
+    position: absolute;
+    inset-inline-end: 0;
+    inset-block-end: calc(100% + 12px);
+    width: 210px;
+    padding: 6px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    background-color: rgb(255 255 255 / 96%);
+    box-shadow: var(--shadow-floating);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    backdrop-filter: blur(18px) saturate(180%);
+    transform-origin: bottom right;
+    animation: language-menu-in 180ms ease-out;
+}
+
+.floating-language-options[hidden] {
+    display: none;
+}
+
+@keyframes language-menu-in {
+    from {
+        opacity: 0;
+        transform: translateY(8px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.language-option {
+    display: grid;
+    width: 100%;
+    min-height: 44px;
+    grid-template-columns: 34px minmax(0, 1fr) 20px;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border: 0;
+    border-radius: var(--radius-button);
+    background-color: transparent;
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 500;
+    text-align: start;
+    cursor: pointer;
+    transition:
+        background-color var(--transition-fast),
+        color var(--transition-fast);
+}
+
+.language-option:hover,
+.language-option:focus-visible {
+    outline: none;
+    background-color: var(--color-background);
+}
+
+.language-option.is-active {
+    background-color: rgb(250 204 21 / 16%);
+}
+
+.language-option.is-active:hover,
+.language-option.is-active:focus-visible {
+    background-color: rgb(250 204 21 / 24%);
+}
+
+.language-option > svg {
+    width: 16px;
+    height: 16px;
+    color: #a16207;
+}
+
+.language-code {
+    display: inline-flex;
+    min-width: 32px;
+    height: 24px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-button);
+    background-color: var(--color-surface);
+    color: var(--color-muted);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.language-option[lang="ar"] {
+    font-family: var(--font-arabic);
+}
+
+/* ==========================================================================
+   18. Component loading and errors
+   ========================================================================== */
+
+[data-component-shell][aria-busy="true"] {
+    min-height: 96px;
+    background:
+        linear-gradient(
+            90deg,
+            #fafafa 25%,
+            #f2f2f2 37%,
+            #fafafa 63%
+        );
+    background-size: 400% 100%;
+    animation: component-shimmer 1.2s ease infinite;
+}
+
+.component-error {
+    width: min(calc(100% - 32px), var(--container-width));
+    margin: 24px auto;
+    padding: 16px;
+    border: 1px solid var(--color-danger);
+    border-radius: var(--radius-card);
+    background-color: var(--color-surface);
+    color: var(--color-danger);
+}
+
+.component-error p {
+    margin: 0;
+    color: inherit;
+}
+
+@keyframes component-shimmer {
+    to {
+        background-position: -100% 0;
+    }
+}
+
+.noscript-message {
+    position: fixed;
+    inset: auto 0 0;
+    z-index: 2000;
+    margin: 0;
+    padding: 16px;
+    background-color: var(--color-danger);
+    color: var(--color-surface);
+    text-align: center;
+}
+
+/* ==========================================================================
+   19. Arabic and RTL
+   ========================================================================== */
+
+html[lang="ar"] body {
+    font-family: var(--font-arabic);
+    line-height: 1.7;
+}
+
+html[lang="ar"] h1,
+html[lang="ar"] h2,
+html[lang="ar"] h3 {
+    line-height: 1.2;
+    letter-spacing: 0;
+}
+
+html[dir="rtl"] [data-directional-icon] {
+    transform: scaleX(-1);
+}
+
+html[dir="rtl"] .steps li {
+    grid-template-columns: 1fr 52px;
+}
+
+html[dir="rtl"] .step-number {
+    order: 2;
+}
+
+html[dir="rtl"] .metric::after {
+    transform-origin: right;
+}
+
+html[dir="rtl"] .floating-language-options {
+    transform-origin: bottom left;
+}
+
+/* ==========================================================================
+   20. Responsive layout
+   ========================================================================== */
+
+@media (max-width: 767px) {
+    .container,
+    .nav-shell {
+        width: min(calc(100% - 32px), var(--container-width));
+    }
+
+    .section {
+        padding-block: 64px;
+    }
+
+    .desktop-nav,
+    .nav-login,
+    .nav-cta {
+        display: none;
+    }
+
+    .menu-button {
+        display: block;
+    }
+
+    .nav-actions {
+        gap: 4px;
+    }
+
+    .hero-grid,
+    .approach-grid,
+    .security-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sticky-copy {
+        position: static;
+    }
+
+    .metric-strip {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .metric-strip > div:nth-child(2n) {
+        border-inline-end: 0;
+    }
+
+    .metric {
+        padding: 1.5rem 1rem;
+    }
+
+    .metric-value,
+    .metric-strip strong {
+        min-height: 2.5rem;
+        font-size: 2rem;
+    }
+
+    .metric::after {
+        inset-inline: 1rem;
+    }
+
+    .feature-grid,
+    .security-list {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-card {
+        display: block;
+        padding: 32px 24px;
+    }
+
+    .contact-actions {
+        margin-top: 28px;
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
+    }
+
+    .floating-language {
+        inset-inline-end: 16px;
+        inset-block-end: 16px;
+    }
+
+    .floating-language-button {
+        width: 48px;
+        height: 48px;
+    }
+
+    .floating-language-options {
+        width: min(210px, calc(100vw - 32px));
+    }
+
+    .discuss-button-ar {
+        width: 100%;
+        min-width: 100%;
+    }
+}
+
+@media (max-width: 640px) {
+    h1,
+    h2 {
+        font-size: 32px;
+    }
+
+    .section {
+        padding-block: 48px;
+    }
+
+    .hero {
+        padding-top: 64px;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+    }
+
+    .hero-actions .button {
+        width: 100%;
+    }
+
+    .workflow-canvas {
+        min-height: 400px;
+        padding: 32px 18px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-brand {
+        grid-column: auto;
+    }
+
+    .footer-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 16px;
+    }
+}
+
+/* ==========================================================================
+   21. Reduced motion
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .discuss-button::before {
+        padding: 2px;
+        background: var(--color-project-yellow);
+        animation: none;
+        will-change: auto;
+    }
+
+    .discuss-button::after {
+        border-color: var(--color-project-yellow);
+    }
+
+    [data-component-shell][aria-busy="true"] {
+        animation: none;
+    }
+
+    .metric::after {
+        transition: none;
+    }
+
+    .floating-language-options {
+        animation: none;
+    }
+}
+
+/* ==========================================================================
+   22. Browser fallback for animated border
+   ========================================================================== */
+
+@supports not ((mask-composite: exclude) or (-webkit-mask-composite: xor)) {
+    .discuss-button::before {
+        display: none;
+    }
+
+    .discuss-button::after {
+        border-width: 2px;
+        border-color: var(--color-project-yellow);
+    }
+
+    .discuss-button:hover::after,
+    .discuss-button:focus-visible::after {
+        border-width: 3px;
+    }
+}
+
+/* ==========================================================================
+   23. Final integration safeguards
+   Single-file CSS integration for Discuss button and floating language menu
+   ========================================================================== */
+
+/* The old header select no longer exists. */
+.language-selector,
+.footer-language-selector,
+.footer-language-control {
+    display: none !important;
+}
+
+/* Keep floating control visible even when it is inserted inside the Footer. */
+.site-footer .floating-language,
+.floating-language {
+    position: fixed;
+    inset-inline-end: 24px;
+    inset-block-end: 24px;
+    z-index: 5000;
+    display: block;
+    width: auto;
+    height: auto;
+    pointer-events: none;
+}
+
+.floating-language-button,
+.floating-language-options {
+    pointer-events: auto;
+}
+
+/* Ensure the menu always opens above the floating icon. */
+.floating-language-options {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+}
+
+.floating-language-options[hidden] {
+    display: none !important;
+    visibility: hidden;
+    opacity: 0;
+}
+
+/* Make active language state explicit. */
+.language-option[aria-current="true"],
+.language-option.is-active {
+    background-color: rgb(250 204 21 / 18%);
+}
+
+/* Prevent global button rules from overriding the floating control. */
+.floating-language-button {
+    min-width: 52px;
+    min-height: 52px;
+    padding: 0;
+    border-radius: 50%;
+}
+
+/* Keep Discuss content above its animated border. */
+.discuss-button > span,
+.discuss-button > i,
+.discuss-button > svg {
+    position: relative;
+    z-index: 3;
+}
+
+/* Hover and focus always stop the circular border animation. */
+.discuss-button:hover::before,
+.discuss-button:focus-visible::before {
+    animation: none !important;
+    background: var(--color-project-yellow) !important;
+}
+
+/* Button surface always remains transparent. */
+.discuss-button,
+.discuss-button:hover,
+.discuss-button:focus-visible,
+.discuss-button:active {
+    background-color: transparent;
+}
+
+@media (max-width: 767px) {
+    .site-footer .floating-language,
+    .floating-language {
+        inset-inline-end: 16px;
+        inset-block-end: 16px;
+    }
+}
