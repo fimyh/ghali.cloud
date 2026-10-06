@@ -6,3 +6,95 @@
           d="M0 0 C1.99 1.83 3.95 3.69 5.9 5.57 C7.1 6.72 8.32 7.85 9.55 8.98 C26.39 24.88 40.74 48.25 46.22 70.84 C38.31 71.17 30.4 71.42 22.49 71.57 C18.81 71.64 15.14 71.74 11.47 71.9 C-12.26 72.9 -12.26 72.9 -18.05 69.51 C-21.43 66.37 -23.32 62.81 -25 58.57 C-31.41 44.32 -51.14 33.67 -64.78 27.84 C-88.69 18.95 -115.64 18.89 -139.04 29.5 C-147.32 33.57 -154.7 37.9 -161.78 43.84 C-162.52 44.44 -163.26 45.03 -164.02 45.64 C-180.89 59.74 -192.14 82.11 -194.78 103.84 C-196.35 132.36 -190.88 157.7 -171.8 179.54 C-154.01 199.27 -130.3 210.31 -103.87 211.72 C-79.1 212.62 -54.59 204.4 -36.29 187.47 C-33.37 184.67 -30.55 181.78 -27.78 178.84 C-28.49 178.89 -29.2 178.94 -29.93 178.99 C-51.66 180.16 -51.66 180.16 -58.56 174.68 C-61.81 171.57 -64.64 168.15 -67.39 164.59 C-69.1 162.44 -71.02 160.7 -73.15 158.97 C-76.84 155.86 -80.18 152.46 -83.56 149.03 C-85.57 147.05 -87.63 145.18 -89.78 143.34 C-93.56 140.1 -97.04 136.61 -100.53 133.05 C-103.31 130.32 -106.24 127.82 -109.25 125.35 C-110.78 123.84 -110.78 123.84 -111.78 120.84 C-57.66 120.84 -3.54 120.84 52.22 120.84 C57.52 131.43 48.86 154.84 45.37 165.43 C31.67 204.26 3.52 236.93 -33.78 254.84 C-73.14 272.53 -117.01 274.13 -157.37 258.8 C-172.84 252.61 -187.17 243.71 -199.78 232.84 C-200.24 232.44 -200.71 232.04 -201.19 231.63 C-225.71 210.47 -242.2 182.32 -249.78 150.84 C-249.95 150.16 -250.13 149.47 -250.31 148.76 C-255.38 128.13 -255.08 102.38 -249.78 81.84 C-249.48 80.66 -249.48 80.66 -249.18 79.46 C-241.9 51.48 -228.36 28.93 -208.78 7.84 C-208.23 7.24 -207.68 6.63 -207.11 6.01 C-185 -17.3 -151.41 -32.49 -119.78 -36.16 C-118.93 -36.27 -118.08 -36.38 -117.21 -36.49 C-75.53 -41.15 -31.37 -28.03 0 0 Z "
           fill="#000000" transform="translate(252.777587890625,149.1572265625)" />
       </svg>
+
+
+      		<!-- <div class="discuss-layout">
+			<aside class="discuss-info">
+				<h2>À quoi vous attendre</h2>
+				<p>Un échange exploratoire, concret et sans engagement.</p>
+
+				<ul class="discuss-benefits">
+					<li><span class="discuss-benefit-icon"><i data-lucide="clock-3" aria-hidden="true"></i></span>
+						<div><strong>30 minutes</strong>
+							<p>Un format court pour cadrer le besoin et identifier la prochaine étape.</p>
+						</div>
+					</li>
+					<li><span class="discuss-benefit-icon"><i data-lucide="video" aria-hidden="true"></i></span>
+						<div><strong>Visioconférence</strong>
+							<p>Un échange à distance avec un membre de l’équipe Ghali Cloud.</p>
+						</div>
+					</li>
+					<li><span class="discuss-benefit-icon"><i data-lucide="target" aria-hidden="true"></i></span>
+						<div><strong>Prochaine étape claire</strong>
+							<p>Vous repartez avec une première orientation adaptée à votre contexte.</p>
+						</div>
+					</li>
+				</ul>
+
+				<div class="discuss-availability"><span aria-hidden="true"></span>Nouveaux créneaux disponibles cette
+					semaine</div>
+			</aside>
+
+			<section class="discuss-form-card" aria-labelledby="discuss-form-title">
+				<div data-form-content>
+					<h2 id="discuss-form-title">Préparer votre demande</h2>
+					<p class="discuss-form-intro">Complétez les informations ci-dessous. Votre client e-mail s’ouvrira
+						avec une demande préremplie.</p>
+
+					<form data-meeting-form novalidate data-language="fr">
+						<div class="discuss-form-grid">
+							<div class="discuss-field"><label for="fr-name">Nom complet <span
+										aria-hidden="true">*</span></label><input id="fr-name" name="name" type="text"
+									autocomplete="name" required aria-describedby="fr-name-help">
+								<p id="fr-name-help" class="discuss-field-help"></p>
+							</div>
+							<div class="discuss-field"><label for="fr-email">E-mail professionnel <span
+										aria-hidden="true">*</span></label><input id="fr-email" name="email"
+									type="email" autocomplete="email" required aria-describedby="fr-email-help">
+								<p id="fr-email-help" class="discuss-field-help"></p>
+							</div>
+							<div class="discuss-field"><label for="fr-company">Entreprise</label><input id="fr-company"
+									name="company" type="text" autocomplete="organization"></div>
+							<div class="discuss-field"><label for="fr-role">Fonction</label><input id="fr-role"
+									name="role" type="text" autocomplete="organization-title"></div>
+							<div class="discuss-field"><label for="fr-topic">Sujet principal <span
+										aria-hidden="true">*</span></label><select id="fr-topic" name="topic" required
+									aria-describedby="fr-topic-help">
+									<option value="">Sélectionnez un sujet</option>
+									<option value="Agents IA">Agents IA</option>
+									<option value="Intelligence documentaire et OCR">Intelligence documentaire et OCR
+									</option>
+									<option value="RAG et systèmes de connaissances">RAG et systèmes de connaissances
+									</option>
+									<option value="Automatisation des processus">Automatisation des processus</option>
+									<option value="Autre">Autre</option>
+								</select>
+								<p id="fr-topic-help" class="discuss-field-help"></p>
+							</div>
+							<div class="discuss-field"><label for="fr-date">Date souhaitée</label><input id="fr-date"
+									name="date" type="date" data-meeting-date></div>
+							<div class="discuss-field discuss-field-full"><label for="fr-message">Votre contexte <span
+										aria-hidden="true">*</span></label><textarea id="fr-message" name="message"
+									required aria-describedby="fr-message-help"
+									placeholder="Décrivez brièvement votre besoin, le processus concerné et le résultat attendu."></textarea>
+								<p id="fr-message-help" class="discuss-field-help"></p>
+							</div>
+						</div>
+
+						<div class="discuss-form-footer">
+							<p>Les informations saisies servent uniquement à préparer votre prise de contact avec Ghali
+								Cloud.</p>
+							<button class="button discuss-submit" type="submit">Demander un échange <i
+									data-lucide="send" data-directional-icon aria-hidden="true"></i></button>
+						</div>
+					</form>
+				</div>
+
+				<div class="discuss-success" data-success-panel hidden tabindex="-1">
+					<span><i data-lucide="check" aria-hidden="true"></i></span>
+					<h2>Votre demande est prête.</h2>
+					<p>Votre client e-mail va s’ouvrir. Vérifiez le message, puis envoyez-le à l’équipe Ghali Cloud.</p>
+				</div>
+			</section>
+
+		</div> -->
